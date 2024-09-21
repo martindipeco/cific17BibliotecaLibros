@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,22 +53,8 @@ public class Bibliotecario {
         this.deVacaciones = deVacaciones;
     }
 
-    //Métodos de servicio
-    //TODO
-    public Libro encontrarLibroPorISBN(int isbn)
-    {
-        return new Libro();
-    }
-    //TODO
-    public List<Libro> encontrarLibroPorAutores(String autores)
-    {
-        return new ArrayList<Libro>();
-    }
-    //TODO
-    public List<Libro> encontrarLibroPorTitulo(String titulo)
-    {
-        return new ArrayList<Libro>();
-    }
+    //Métodos de servicio - Eventualmente: Crear LibroServicio, SocioServicio y PrestamoServicio
+
 
     public boolean chequearDisponible(Libro libro)
     {
@@ -105,8 +92,9 @@ public class Bibliotecario {
         //adjudica el préstamo al socio
         socio.getPrestamosActivos().add(prestamo);
         //informa prestamo
+        System.out.println("Préstamo registrado con éxito");
         System.out.println("El título con ISBN " + libro.getIsbn() + " deberá ser devuelto el día " +
-                prestamo.getFechaADevolver());
+                prestamo.getFechaADevolver().format(DateTimeFormatter.ISO_DATE));
     }
 
     public void devolverLibro(Prestamo prestamo)
